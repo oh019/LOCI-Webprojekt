@@ -111,7 +111,7 @@ session_start();
             $content= $_POST["content"];
             echo $content;
 
-            $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-oh019', 'oh019', 'oS7ez3seiZ',array('charset'=>'utf8'));
+            include 'database.php';
 
 
             $statement = $pdo->prepare("SELECT * FROM posts");
