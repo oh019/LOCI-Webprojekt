@@ -4,9 +4,11 @@ session_start();
 
 if(isset($_POST["Nutzername"]) AND isset($_POST["Passwort"]))
 {
-    $username=$_POST["Nutzername"];
+    $nutzername=$_POST["Nutzername"];
     $passwort=$_POST["Passwort"];
+
 }
+
 else
 {
     echo"Keine Daten";
@@ -15,15 +17,17 @@ else
 include 'database.php';
 
 
+$statement = $pdo->prepare("SELECT * FROM users WHERE USERNAME=:nutzername AND PASSWORT=:passwort");
 
-$statement = $pdo->prepare("SELECT * FROM users WHERE username=:username AND passwort=:passwort");
-
-if($statement->execute(array(':Nutzername'=>$username, ':Passwort'=>$passwort))) {
+if($statement->execute(array(':nutzername'=>$nutzername, ':passwort'=>$passwort))) {
     if($row=$statement->fetch()) {
         //echo "angemeldet";
-        $_SESSION["angemeldet"]=$row["username"];
+        $_SESSION["angemeldet"]=$row["USERNAME"];
+
+
         header('Location: index.php');
-    }  
+        echo "Du hast dich als $nutzername eingeloggt"; //wie mache ich das auf der Indexseite?
+    }
     else
     {
         echo"nicht berechtigt";

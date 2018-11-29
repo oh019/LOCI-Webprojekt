@@ -99,16 +99,40 @@ date_default_timezone_set('Europe/Berlin');
         </div>
         <div class="col span_2_of_3">
             <ul id="ul"> <li><a id="navigation" href="schreiben.php" >neuer Beitrag</a></li></ul><br><br><br><br>
+
+            <form>
+                <input type=\"hidden\" name=\"user_id\" value=\"Benutzername\">
+                <input type=\"hidden\" name=\"posted\" value='".date('d-m-Y H:i:s'). "'>
+                <textarea name=\"comment\"></textarea> <br>
+                <button type='submit' name='submit'>Kommentieren</button>
+
+            </form>
+
+            <!--Kommentarfenster-->
+
             <?php
 
             if(isset($_SESSION["angemeldet"]))
             {
-                echo"angemeldet.";
+                echo"Du bist angemeldet.";
+
+               echo "<!--//we only can see upload images if we are logged in!-->
+
+<form action=\"do_upload.php\" method=\"POST\" enctype=\"multipart/form-data\">
+    <!--enctype - braucht man für um die Bilder in upload.php zu übergeben-->
+
+    <input type=\"file\" name=\"file\">
+
+    <!--\"choose file\" button-->
+    <button type=\"submit\" name=\"submit\">Bild hochladen</button>
+</form>
+<!-- ein Bild auf die Website hochladen
+";
 
             }
             else
             {
-                echo"nicht angemeldet.";
+                echo"Du bist nicht angemeldet.";
                 die();
             }
             echo"<br>";
@@ -133,22 +157,8 @@ date_default_timezone_set('Europe/Berlin');
             }
 
 
-
-         ?>
-
-
-           <?php echo "<form>
-                <input type=\"hidden\" name=\"user_id\" value=\"Anonym\">
-                <input type=\"hidden\" name=\"posted\" value='".date('d-m-Y H:i:s'). "'>
-                <textarea name=\"comment\"></textarea> <br>
-                <button type='submit' name='submit'>Kommentieren</button>
-
-
-            </form> "
-
-
-           //Kommentarfenster
             ?>
+
 
         </div>
         <div class="col span_3_of_3">
