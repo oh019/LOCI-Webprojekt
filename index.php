@@ -1,9 +1,5 @@
 <?php
 session_start();
-
-date_default_timezone_set('Europe/Berlin');
-// date_default_timezone_set->setzt die Standardzeitzone, die von allen Datums- und Zeitfunktionen benutzt wird.
-//Dataformat bestimmen das wir für das Datum verwenden
 ?>
 <!doctype html>
 <html lang="de">
@@ -100,6 +96,8 @@ date_default_timezone_set('Europe/Berlin');
         <div class="col span_2_of_3">
             <ul id="ul"> <li><a id="navigation" href="schreiben.php" >neuer Beitrag</a></li></ul><br><br><br><br>
             <?php
+            $user_id = $_SESSION['aktiveruser'];
+            echo 'user nr '$user_id' ist angemeldet.';
 
             if(isset($_SESSION["angemeldet"]))
             {
@@ -132,25 +130,7 @@ date_default_timezone_set('Europe/Berlin');
                 die();
             }
 
-
-
-         ?>
-
-
-           <?php echo "<form>
-                <input type=\"hidden\" name=\"user_id\" value=\"Anonymous\">
-                <input type=\"hidden\" name=\"posted\" value='".date('d-m-Y H:i:s'). "'>
-                <textarea name=\"comment\"></textarea> <br>
-                <button type='submit' name='submit'>Kommentieren</button>
-              
-
-
-            </form> "
-
-
-           //Kommentarfenster
             ?>
-
         </div>
         <div class="col span_3_of_3">
             <li> NEWS BEREICH</li>

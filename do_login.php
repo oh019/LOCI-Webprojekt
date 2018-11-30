@@ -22,7 +22,9 @@ if($statement->execute(array(':nutzername'=>$nutzername, ':passwort'=>$passwort)
     if($row=$statement->fetch()) {
         //echo "angemeldet";
         $_SESSION["angemeldet"]=$row["USERNAME"];
-        header('Location: index.php');
+
+
+
     }  
     else
     {
@@ -34,3 +36,12 @@ if($statement->execute(array(':nutzername'=>$nutzername, ':passwort'=>$passwort)
     echo $statement->queryString;
     die();
 }
+$query =  $pdo->prepare ( "SELECT USER_ID FROM users WHERE USERNAME=:nutzername AND PASSWORT=:passwort");
+$query->execute(array(':nutzername'=>$nutzername, ':passwort'=>$passwort));
+$result = $query->fetch(  PDO::FETCH_ASSOC);
+$user_id = $result ["USER_ID"];
+
+$_SESSION['aktiveruser'] = $user_id;
+//echo $user_id;
+
+// header('Location: index.php');
