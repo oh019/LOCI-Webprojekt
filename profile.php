@@ -22,56 +22,36 @@ include_once 'database.php';
 <body>
 
 <?php
-/*
-$statement = "SELECT * FROM users";
-$result = mysqli_query($pdo,$statement);
-if (mysqli_num_rows ($result) >0) {
-    while ($row =mysqli_fetch_assoc ($result)) {
-        $id=$row ['id'];
-        $sqlImg = "SELECT * FROM profileImg WHERE userid= '$id'";
-        $resultImg = mysqli_query ($pdo, $sqlImg);
-        while ($rowImg = mysqli_fetch_assoc ($resultImg));{
-            echo "<div>";
-            if ($rowImg ['status'] ==0) {
-                echo "<img src='uploads/profile".$id.".jpg'>";
-                } else {
-                echo "<img src='uploads/profiledefault.jpg'>";
-
-            }
-            echo $row ['username'];
-
-            echo "</div>";
-
-        }
+$user_id = $_SESSION['aktiveruser'];
+echo 'user nr "$user_id" ist angemeldet.';
+if(isset($_SESSION["angemeldet"]))
+{
+    echo"angemeldet.";
+}
+else
+{
+    echo"nicht angemeldet.";
+    die();
+}
+echo"<br>";
+echo"<br>";
+$content= $_POST["content"];
+echo $content;
+include 'database.php';
+$statement = $pdo->prepare("SELECT * FROM posts");
+if($statement->execute()) {
+    while($row=$statement->fetch()) {
+        echo $row['POST_ID']." ".$row['TEXT']." ".$row['USER_ID'];
+        echo "<a href=\"edit.php?id=".$row['POST_ID']."\">EDIT</a>";
+        echo "<br>";
     }
 } else {
-    echo "Keine Users gefunden";
+    echo "Datenbank-Fehler:";
+    echo $statement->errorInfo()[2];
+    echo $statement->queryString;
+    die();
 }
-
-
-
-
-/*if (isset ($_SESSION ['id'])) {
-    if ($_SESSION ['id'] == 1) {
-        echo "Du hast dich als user#1 eingeloggt";
-
-    } */
-
-   /* echo "<form action=\'upload.php\' method=\'POST\' enctype=\'multipart/form-data\'>
-    
-    <input type=\'file\' name=\'file\'>
-
-    <button type=\'submit\' name=\'submit\'>Bild hochladen</button>
-</form>";*/
-
-    //we have our picture upload form inside our statement-> it checks if we are logged in-> when we are not logged in we cannot see the form
-
-
-/*} else {
-    echo "Du bist nicht eingeloggt!";
-}
-*/
-
+?>
 ?>
 
 <!--//we only can see upload images if we are logged in!-->
@@ -83,11 +63,4 @@ if (mysqli_num_rows ($result) >0) {
 
     <!--"choose file" button-->
     <button type="submit" name="submit">Bild hochladen</button>
-</form>
-<!-- ein Bild auf die Website hochladen
-
-
-<form method='post' action='' enctype='multipart/form-data'>
-  <input type='file' name='files[]' multiple />
-  <input type='submit' value='Submit' name='submit' />
 </form>
