@@ -17,20 +17,17 @@ else
     die();
 }
 
-    $statement = $pdo->prepare("INSERT INTO users (USERNAME, PASSWORT, STUDIENGANG, EMAIL) VALUES (?,?,?,?)");
+$statement = $pdo->prepare("INSERT INTO users (USERNAME, PASSWORT, STUDIENGANG, EMAIL) VALUES (?,?,?,?)");
 
-    $statement->execute(array($nutzername, $passwort, $attribut, $email));
+$success = $statement->execute(array($nutzername, $passwort, $attribut, $email));
 
-if (isset($_POST['Login'])) {
-    header('Location: index.php');
-} elseif (isset($_POST['Registrierung'])) {
-    header('Location: profile.php');
+if ($success) {
+    echo "Du wurdest erfolgreich registriert!";
 } else {
-    echo 'something went wrong';
+    echo "Die Registrierung hat nicht geklappt! :(";
 }
 
-/*echo "Du wurdest erfolgreich registriert!";
-        header('Location: index.php');*/
+        //header('Location: index.php');*/
 ?>
 
 

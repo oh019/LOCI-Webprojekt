@@ -71,14 +71,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .container .login_section form .btn-primary,
-.container .login_section form .btn-outline-primary, .container .signup_section form .btn-primary,
-.container .signup_section form .btn-outline-primary {
+.container .login_section form .btn-outline-primary,
+.container .signup_section form .btn-primary,
+.container .signup_section form .btn-outline-primary,
+.container .signup_section a {
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
     border-radius: 20px;
     margin-top: 15px;
     font-size: 12px;
 }
+
 @media only screen and (min-width: 720px) and (max-width: 991px) {
     .container .login_section form .btn-primary,
     .container .login_section form .btn-outline-primary, .container .signup_section form .btn-primary,
@@ -493,3 +496,5 @@ body {
 .custom-select.is-valid, .form-control.is-valid, .was-validated .custom-select:valid, .was-validated .form-control:valid {
     border-color: #a2a2a2;
 }
+
+.btn
