@@ -33,10 +33,10 @@ session_start();
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        Olja Schweizer
+                        Hier steht dein Name
                     </div>
                     <div class="profile-studiengang">
-                        OM7
+                        Hier steht dein Studiengang
                      </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
@@ -103,8 +103,9 @@ session_start();
 
 
 <?php
+
 $user_id = $_SESSION['aktiveruser'];
-if(isset($_SESSION['aktiveuser']))
+if(isset($_SESSION['angemeldet']))
 {
     echo '"$user_id" ist angemeldet.';
 }
@@ -131,17 +132,7 @@ echo $statement->errorInfo()[2];
 echo $statement->queryString;
 die();
 }
-?>*/
-
-<!--//we only can see upload images if we are logged in!-->
-
-<form action="do_upload.php" method="POST" enctype="multipart/form-data">
-    <!--enctype - braucht man für um die Bilder in upload.php zu übergeben-->
-
- <input type="file" name="file">
-
-  <!--"choose file" button-->
-  <button type="submit" name="submit">Bild hochladen</button>
+?>
 </form>
 </body>
 <br>

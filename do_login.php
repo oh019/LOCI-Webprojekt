@@ -38,7 +38,7 @@ $result = $query->fetch(  PDO::FETCH_ASSOC);
 $user_id = $result ["USER_ID"];
 $_SESSION['aktiveruser'] = $user_id;
 //echo $user_id;
-if (isset($_POST['Login'])) {
+if (isset($_POST['angemeldet'])) {
     header('Location: profile.php');
 } elseif (isset($_POST['Register'])) {
     header('Location: register.php');
