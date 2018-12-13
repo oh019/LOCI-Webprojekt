@@ -11,3 +11,7 @@ Funktion zum ID auslesen und weitergeben integriert.
 
 30.11. 
 Login und Registrierung  Bootstrap/CSS (login, do_login, register, do_register, main.css)
+
+13.12.
+Bild Upload in die Datenbank (momentan noch ohne Profilbild) (profil_change, profil, do_upload)
+Kommentare hinzugefügt (do_login, do_register)
